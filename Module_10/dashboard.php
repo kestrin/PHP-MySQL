@@ -8,10 +8,10 @@
         table,td,th{
             border:1px solid black;
             border-collapse: collapse;
-        }
-        td,th{
-            padding: 10px 20px;
-        }
+            }
+            td,th{
+                padding: 10px 20px;
+            }
     </style>
 </head>
 <body>

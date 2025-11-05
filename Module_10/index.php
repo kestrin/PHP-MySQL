@@ -6,20 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="index.php" method="GET">
-        <label for="Username">Username</label>
-        <input type="text" name="username" placeholder="Username"><br><br>
-        <label for="Password">Password</label>
-        <input type="password" name="password" placeholder="Password"><br><br>
-        <input type="submit" value="Submit">
+    <form action="add.php" method="GET">
+    <input type="text" name="name" placeholder="name"><br>
+    <input type="text" name="username" placeholder="username"><br>
+    <input type="text" name="email" placeholder="email"><br>
+    <input type="submit" value="Submit" placeholder="submit"><br>
     </form>    
 
 </body>
 </html>
-<?php
-$username = $_GET["username"];
-$password = $_GET["password"];
-
-echo "$username and $password"
-
-?>
