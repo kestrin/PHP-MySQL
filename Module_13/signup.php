@@ -1,68 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+
+	include_once('config.php');	
+
+	if(isset($_POST['submit']))
+	{
+		$name = $_POST['name'];
+		$surname = $_POST['surname'];
+		$email = $_POST['email'];
+
+		
+        $sql = "insert into users (name, surname, email) values (:name, :surname, :email)";
+        $sqlQuery = $conn->prepare($sql);
+    
+        $sqlQuery->bindParam(':name', $name); 
+        $sqlQuery->bindParam(':surname', $surname); 
+        $sqlQuery->bindParam(':email', $email);
+
+        $sqlQuery->execute();
+
+        echo "Data saved successfully ...";
+	}
+?>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
- <section class="vh-100 bg-image"
-  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px;">
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+        </form >
 
+        <form action="signup.php" method="POST">
+<!-- Section: Design Block -->
+<section class="">
+  <!-- Jumbotron -->
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+            The best offer <br />
+            <span class="text-primary">for your business</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+            quibusdam tempora at cupiditate quis eum maiores libero
+            veritatis? Dicta facilis sint aliquid ipsum atque?
+          </p>
+        </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5">
               <form>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div data-mdb-input-init class="form-outline">
+                      <input type="text" id="form3Example1" class="form-control" name="name" />
+                      <label class="form-label" for="form3Example1">First name</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div data-mdb-input-init class="form-outline">
+                      <input type="text" id="form3Example2" class="form-control" name="surname"/>
+                      <label class="form-label" for="form3Example2">Last name</label>
+                    </div>
+                  </div>
                 </div>
 
+                <!-- Email input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <input type="email" id="form3Example3" class="form-control" name="email" />
+                  <label class="form-label" for="form3Example3">Email address</label>
                 </div>
 
+                <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Password</label>
+                  <input type="password" id="form3Example4" class="form-control" />
+                  <label class="form-label" for="form3Example4">Password</label>
                 </div>
 
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                </div>
-
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                <!-- Checkbox -->
+                <div class="form-check d-flex justify-content-center mb-4">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                  <label class="form-check-label" for="form2Example33">
+                    Subscribe to our newsletter
                   </label>
                 </div>
 
-                <div class="d-flex justify-content-center">
-                  <button  type="button" data-mdb-button-init
-                    data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                <!-- Submit button -->
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" name="submit">
+                  Sign up
+                </button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>or sign up with:</p>
+                  <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+
+                  <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-google"></i>
+                  </button>
+
+                  <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+
+                  <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-link btn-floating mx-1">
+                    <i class="fab fa-github"></i>
+                  </button>
                 </div>
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
               </form>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-</body>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+</form>
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <a href="dashboard.php">Dashboard</a>
+        <form action="signup.php" method="POST">
+            <input type="text" name="name" placeholder="Name"></br>
+            <input type="text" name="surname" placeholder="Surname"></br>
+            <input type="email" name="email" placeholder="Email"></br>
+            <button type="submit" name="submit">Add</button>
+
+    </body>
 </html>
